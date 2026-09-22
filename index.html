@@ -49,6 +49,9 @@
             justify-content: center;
             padding: 1rem;
             gap: 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
         nav a {
@@ -69,7 +72,7 @@
         }
 
         section {
-            margin-bottom: 3rem;
+            margin-bottom: 3.5rem;
         }
 
         h2 {
@@ -133,6 +136,27 @@
             background-color: #5c2c0c;
         }
 
+        /* Sección de Información Extra */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .info-box {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+        }
+
+        .info-box h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
         .about {
             background-color: var(--accent);
             padding: 3rem 1rem;
@@ -144,13 +168,64 @@
             max-width: 700px;
             margin: 0 auto;
             font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Estilos del Formulario */
+        .order-form-container {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .form-group input, 
+        .form-group select, 
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus, 
+        .form-group select:focus, 
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        @media (max-width: 600px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
         }
 
         footer {
             background-color: var(--primary);
             color: white;
             text-align: center;
-            padding: 1.5rem;
+            padding: 2rem 1rem;
             margin-top: 2rem;
         }
     </style>
@@ -165,11 +240,13 @@
     <nav>
         <a href="#productos">Productos</a>
         <a href="#nosotros">Nosotros</a>
-        <a href="#contacto">Contacto</a>
+        <a href="#info">¿Por qué elegirnos?</a>
+        <a href="#pedido">Realizar Pedido</a>
     </nav>
 
     <div class="container">
         
+        <!-- Sección de Productos Ampliada -->
         <section id="productos">
             <h2>Nuestras Especialidades</h2>
             <div class="products-grid">
@@ -178,37 +255,118 @@
                     <h3>Clásica con Chispas de Chocolate</h3>
                     <p>Crujientes por fuera, suaves por dentro, repletas de auténtico chocolate semiamargo.</p>
                     <span class="price">$25 MXN c/u</span>
-                    <button class="btn">Comprar</button>
+                    <button class="btn" onclick="alert('¡Agregada al carrito!')">Comprar</button>
                 </div>
 
                 <div class="product-card">
                     <h3>Avena y Pasas</h3>
                     <p>Una opción reconfortante con un toque de canela, avena integral y jugosas pasas.</p>
                     <span class="price">$22 MXN c/u</span>
-                    <button class="btn">Comprar</button>
+                    <button class="btn" onclick="alert('¡Agregada al carrito!')">Comprar</button>
                 </div>
 
                 <div class="product-card">
                     <h3>Doble Chocolate & Nuez</h3>
                     <p>Intensa masa de cacao con trozos de nuez tostada y doble dosis de chocolate.</p>
                     <span class="price">$30 MXN c/u</span>
-                    <button class="btn">Comprar</button>
+                    <button class="btn" onclick="alert('¡Agregada al carrito!')">Comprar</button>
+                </div>
+
+                <div class="product-card">
+                    <h3>Red Velvet con Queso Crema</h3>
+                    <p>Suave textura de terciopelo rojo con un irresistible relleno de crema de queso dulce.</p>
+                    <span class="price">$35 MXN c/u</span>
+                    <button class="btn" onclick="alert('¡Agregada al carrito!')">Comprar</button>
+                </div>
+
+                <div class="product-card">
+                    <h3>Mantequilla y Macadamia</h3>
+                    <p>Galleta de mantequilla pura desmoronable con trocitos crujientes de nuez macadamia.</p>
+                    <span class="price">$32 MXN c/u</span>
+                    <button class="btn" onclick="alert('¡Agregada al carrito!')">Comprar</button>
+                </div>
+
+                <div class="product-card">
+                    <h3>Caja Surtida (6 piezas)</h3>
+                    <p>Una selección especial de nuestros mejores sabores para compartir o regalar.</p>
+                    <span class="price">$150 MXN</span>
+                    <button class="btn" onclick="alert('¡Agregada al carrito!')">Comprar</button>
                 </div>
 
             </div>
         </section>
 
+        <!-- Sección de Sobre Nosotros -->
         <section id="nosotros" class="about">
             <h2>Sobre Nosotros</h2>
             <p>En <strong>Dulce Tentación</strong> creemos que cada galleta cuenta una historia. Utilizamos mantequilla 100% real, ingredientes locales y recetas tradicionales para llevar a tu mesa el sabor casero incomparable que te transporta a los mejores momentos.</p>
+            <p>Cada lote se hornea diariamente bajo pedido para garantizar la máxima frescura, textura y calidad en cada mordisco.</p>
         </section>
 
-        <section id="contacto">
-            <h2>Hacer un Pedido</h2>
-            <div style="text-align: center; max-width: 600px; margin: 0 auto;">
-                <p>¿Antojo repentino o un evento especial? Escríbenos directamente y agenda tu pedido con anticipación.</p>
-                <p style="margin-top: 1rem;"><strong>WhatsApp:</strong> +52 999 000 0000</p>
-                <p><strong>Email:</strong> pedidos@dulcetentacion.com</p>
+        <!-- Nueva Sección de Información Adicional -->
+        <section id="info">
+            <h2>¿Por qué elegirnos?</h2>
+            <div class="info-grid">
+                <div class="info-box">
+                    <h4>Horneado Diario</h4>
+                    <p>Nunca vendemos galletas del día anterior. Todo se prepara fresco cada mañana.</p>
+                </div>
+                <div class="info-box">
+                    <h4>Ingredientes Premium</h4>
+                    <p>Sin conservadores artificiales. Usamos vainilla natural, mantequilla fina y cacao puro.</p>
+                </div>
+                <div class="info-box">
+                    <h4>Ideales para Regalo</h4>
+                    <p>Contamos con empaques especiales para cumpleaños, aniversarios y eventos corporativos.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Formulario de Pedidos -->
+        <section id="pedido">
+            <h2>Formulario de Pedidos Personalizados</h2>
+            <div class="order-form-container">
+                <form action="#" method="POST" onsubmit="event.preventDefault(); alert('¡Pedido enviado con éxito! Nos pondremos en contacto contigo pronto.');">
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="nombre">Nombre Completo</label>
+                            <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre">
+                        </div>
+                        <div class="form-group">
+                            <label for="telefono">Teléfono / WhatsApp</label>
+                            <input type="tel" id="telefono" name="telefono" required placeholder="9990000000">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="galleta">Selecciona tu sabor favorito</label>
+                            <select id="galleta" name="galleta">
+                                <option value="clasica">Chispas de Chocolate ($25)</option>
+                                <option value="avena">Avena y Pasas ($22)</option>
+                                <option value="doble">Doble Chocolate & Nuez ($30)</option>
+                                <option value="redvelvet">Red Velvet con Queso Crema ($35)</option>
+                                <option value="macadamia">Mantequilla y Macadamia ($32)</option>
+                                <option value="caja">Caja Surtida (6 pzas - $150)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="cantidad">Cantidad (Piezas o Cajas)</label>
+                            <input type="number" id="cantidad" name="cantidad" min="1" value="1" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="direccion">Dirección de Entrega o Comentarios</label>
+                        <textarea id="direccion" name="direccion" rows="4" placeholder="Indica tu dirección o si requieres alguna especificación especial para tu pedido..."></textarea>
+                    </div>
+
+                    <div style="text-align: center;">
+                        <button type="submit" class="btn" style="width: 100%; padding: 1rem; font-size: 1.1rem;">Enviar Pedido</button>
+                    </div>
+
+                </form>
             </div>
         </section>
 
@@ -216,6 +374,7 @@
 
     <footer>
         <p>&copy; 2026 Dulce Tentación. Todos los derechos reservados.</p>
+        <p style="font-size: 0.9rem; color: var(--secondary); margin-top: 0.5rem;">Contáctanos: pedidos@dulcetentacion.com | WhatsApp: +52 999 000 0000</p>
     </footer>
 
 </body>
